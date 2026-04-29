@@ -2,8 +2,8 @@ name: Daily News Agent
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 0 点（北京时间早8点）
-  workflow_dispatch:      # 允许手动触发
+    - cron: '0 0 * * *'  # 北京时间早8点
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -12,10 +12,10 @@ jobs:
       contents: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v4     # 升级至 v4
+      uses: actions/checkout@v4      # ✅ v4
 
     - name: Setup Python
-      uses: actions/setup-python@v5 # 升级至 v5
+      uses: actions/setup-python@v5  # ✅ v5
       with:
         python-version: '3.10'
 
@@ -28,7 +28,7 @@ jobs:
       run: python news_agent.py
 
     - name: Deploy to Pages
-      uses: peaceiris/actions-gh-pages@v4  # 升级至 v4
+      uses: peaceiris/actions-gh-pages@v4  # ✅ v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./
